@@ -51,7 +51,7 @@ pipeline {
 			steps {
 			//"docker build -t vaxme/currency-exchange-devops:$env.BuilD_TAG"
 				script {
-					dockerImage = docker.build("vaxme/currency-exchange-devops:{$env.BuilD_TAG}")
+					dockerImage = docker.build("vaxme/currency-exchange-devops:${env.BuilD_TAG}")
 				}
 			}
 		}
