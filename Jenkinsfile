@@ -20,5 +20,15 @@ pipeline {
 				}
 			}
 
+		} post {
+			always {
+				echo 'Im awesome'
+			}
+			success {
+				echo 'I run when succesful'
+			}
+			failure {
+				echo 'I run when u failed'
+	
 		}
 }
