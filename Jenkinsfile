@@ -34,13 +34,39 @@ pipeline {
 				sh "mvn test"
 				}
 		}
-		
+
 		stage ('Integration Test') {
 			steps {
 				sh "mvn failsafe:integration-test failsafe:verify"
 			}
 		}
+
+		stage ('Package') {
+			steps {
+				sh "mvn Package -DskipTests"
+			}
 		}
+
+		stage('Build Docker Image') {
+			steps {
+			//"docker build -t vaxme/currency-exchange-devops:$env.BuilD_TAG"
+			script {
+				dockerImage = docker.build("vaxme/currency-exchange-devops:{$env.BuilD_TAG}")
+			}
+			}
+		}
+		stage('Push Docker Image') {
+			steps {
+				script {
+					docker.withRegistry('', 'dockerhub') {
+					dockerImage.Push();
+					dockerImage.Push('latest');
+					}
+				}
+			}
+		}
+		}
+
 	post {
 		always {
 			echo 'Im awesome'
