@@ -20,7 +20,8 @@ pipeline {
 				}
 			}
 
-		} post {
+		}
+		post {
 			always {
 				echo 'Im awesome'
 			}
