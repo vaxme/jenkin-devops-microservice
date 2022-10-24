@@ -52,7 +52,7 @@ pipeline {
 			//"docker build -t vaxme/currency-exchange-devops:$env.BuilD_TAG"
 				script {
 					dockerImage = docker.build("vaxme/currency-exchange-devops:{$env.BuilD_TAG}")
-			}
+				}
 			}
 		}
 		stage('Push Docker Image') {
